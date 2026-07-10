@@ -5,49 +5,111 @@ import { Toaster } from "react-hot-toast";
 
 import App from "./App";
 
+import { QuizProvider } from "./context/QuizContext";
+
 import "./index.css";
 import "./styles/globals.css";
 
-import { QuizProvider } from "./context/QuizContext";
+/**
+ * ==========================================================
+ * Main Entry Point
+ * ==========================================================
+ *
+ * Responsibilities
+ * ----------------
+ * - Render the React application
+ * - Initialize BrowserRouter
+ * - Initialize QuizProvider
+ * - Configure global toast notifications
+ * - Load global styles
+ *
+ * Application Flow
+ *
+ * ReactDOM
+ *     │
+ *     ▼
+ * React.StrictMode
+ *     │
+ *     ▼
+ * BrowserRouter
+ *     │
+ *     ▼
+ * QuizProvider
+ *     │
+ *     ▼
+ * App
+ *     │
+ *     ▼
+ * AppRouter
+ *     │
+ *     ▼
+ * Layout
+ *     │
+ *     ▼
+ * Pages
+ *
+ * ==========================================================
+ */
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(
+  document.getElementById("root")
+).render(
   <React.StrictMode>
     <BrowserRouter>
       <QuizProvider>
         <App />
 
         <Toaster
-          position = "top-right"
-          reverseOrder = {false}
-          gutter = {10}
-          toastOptions = {{
+          position="top-right"
+          reverseOrder={false}
+          gutter={8}
+          containerStyle={{
+            top: 20,
+            right: 20,
+          }}
+          toastOptions={{
             duration: 3000,
 
             success: {
               style: {
-                background: "#16A34QA",
-                color: "#fff",
+                background: "#16A34A",
+                color: "#FFFFFF",
                 borderRadius: "12px",
                 padding: "14px 18px",
+                fontSize: "14px",
+                fontWeight: "500",
               },
             },
 
             error: {
               style: {
                 background: "#DC2626",
-                color: "#fff",
+                color: "#FFFFFF",
                 borderRadius: "12px",
                 padding: "14px 18px",
+                fontSize: "14px",
+                fontWeight: "500",
+              },
+            },
+
+            loading: {
+              style: {
+                background: "#2563EB",
+                color: "#FFFFFF",
+                borderRadius: "12px",
+                padding: "14px 18px",
+                fontSize: "14px",
+                fontWeight: "500",
               },
             },
 
             style: {
               background: "#1E293B",
-              color: "#fff",
+              color: "#F8FAFC",
               border: "1px solid #334155",
               borderRadius: "12px",
-              fontSize: "14px",
               padding: "14px 18px",
+              fontSize: "14px",
             },
           }}
         />
