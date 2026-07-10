@@ -1,12 +1,454 @@
 @import "tailwindcss";
 
-* {
+/* ==========================================================
+   PREMIUM DESIGN SYSTEM
+   Expense Tracker v2.0
+========================================================== */
+
+/* Reset */
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ==========================================================
+   Root Variables
+========================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Backgrounds */
+
+  --background: #f5f7fb;
+  --background-secondary: #eef4ff;
+  --surface: #ffffff;
+  --surface-secondary: #fafcff;
+  --surface-hover: #f8fbff;
+
+  /* Primary */
+
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --primary-dark: #1d4ed8;
+
+  /* Secondary */
+
+  --secondary: #7c3aed;
+  --secondary-light: #8b5cf6;
+
+  /* Accent */
+
+  --accent: #06b6d4;
+
+  /* Status */
+
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+
+  /* Text */
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  /* Border */
+
+  --border: #e2e8f0;
+  --border-light: #edf2f7;
+
+  /* Radius */
+
+  --radius-xs: 10px;
+  --radius-sm: 14px;
+  --radius: 20px;
+  --radius-lg: 28px;
+
+  /* Shadows */
+
+  --shadow-xs: 0 2px 5px rgba(15, 23, 42, 0.04);
+
+  --shadow-sm: 0 4px 10px rgba(15, 23, 42, 0.05);
+
+  --shadow-md: 0 12px 28px rgba(15, 23, 42, 0.08);
+
+  --shadow-lg: 0 22px 55px rgba(37, 99, 235, 0.12);
+
+  --shadow-xl: 0 30px 70px rgba(15, 23, 42, 0.14);
+
+  /* Gradient */
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    #2563eb 0%,
+    #4f46e5 45%,
+    #7c3aed 100%
+  );
+
+  --gradient-success: linear-gradient(
+    135deg,
+    #10b981,
+    #34d399
+  );
+
+  --gradient-danger: linear-gradient(
+    135deg,
+    #ef4444,
+    #f87171
+  );
+
+  --gradient-warning: linear-gradient(
+    135deg,
+    #f59e0b,
+    #fbbf24
+  );
+
+  /* Animation */
+
+  --transition: all .28s ease;
+}
+
+/* ==========================================================
+   HTML
+========================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==========================================================
+   Body
+========================================================== */
+
 body {
-  font-family: sans-serif;
-  background: #f8fafc;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  color: var(--text-primary);
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(59,130,246,.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(124,58,237,.08),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #f9fbff 0%,
+      #f5f7fb 45%,
+      #eef4ff 100%
+    );
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================
+   Root
+========================================================== */
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ==========================================================
+   Typography
+========================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 3vw, 3.2rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+}
+
+h3 {
+  font-size: 1.45rem;
+}
+
+p,
+span,
+label {
+  color: var(--text-secondary);
+}
+
+small {
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   Links
+========================================================== */
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* ==========================================================
+   Images
+========================================================== */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================================
+   Buttons
+========================================================== */
+
+button {
+  font: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+/* ==========================================================
+   Inputs
+========================================================== */
+
+input,
+textarea,
+select {
+  width: 100%;
+  font: inherit;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  transition: var(--transition);
+
+  background: white;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 4px rgba(37,99,235,.10);
+}
+
+/* ==========================================================
+   Scrollbar
+========================================================== */
+
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: #edf2f7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #3b82f6,
+    #7c3aed
+  );
+
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #2563eb,
+    #6d28d9
+  );
+}
+
+/* ==========================================================
+   Selection
+========================================================== */
+
+::selection {
+  background: #2563eb;
+  color: white;
+}
+
+/* ==========================================================
+   Utility Classes
+========================================================== */
+
+.glass {
+  background: rgba(255,255,255,.70);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,.65);
+}
+
+.premium-card {
+  background: var(--surface);
+
+  border: 1px solid var(--border-light);
+
+  border-radius: 22px;
+
+  box-shadow: var(--shadow-md);
+
+  transition: var(--transition);
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: var(--shadow-xl);
+}
+
+.gradient-bg {
+  background: var(--gradient-primary);
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: 18px;
+
+  background: var(--gradient-primary);
+
+  color: white;
+
+  box-shadow: var(--shadow-lg);
+}
+
+.section-spacing {
+  margin-top: 2rem;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 1600px;
+
+  margin-inline: auto;
+
+  padding-inline: 32px;
+  padding-block: 28px;
+}
+
+/* ==========================================================
+   Animations
+========================================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp .45s ease;
+}
+
+/* ==========================================================
+   Focus Visible
+========================================================== */
+
+*:focus-visible {
+  outline: 3px solid rgba(37,99,235,.20);
+  outline-offset: 2px;
+}
+
+/* ==========================================================
+   Smooth Hover
+========================================================== */
+
+.hover-lift {
+  transition: var(--transition);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+/* ==========================================================
+   Card Grid Helpers
+========================================================== */
+
+.dashboard-grid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding-inline: 18px;
+    padding-block: 18px;
+  }
+
+  .dashboard-grid {
+    gap: 18px;
+  }
+
+  .premium-card {
+    border-radius: 18px;
+  }
 }
