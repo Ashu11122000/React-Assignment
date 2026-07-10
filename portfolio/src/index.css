@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* ==========================
+   Theme Variables
+========================== */
+
+@theme {
+  --color-primary: #6366f1;
+  --color-secondary: #8b5cf6;
+  --color-accent: #06b6d4;
+
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-border: #e2e8f0;
+
+  --color-dark: #020617;
+  --color-dark-surface: #0f172a;
+  --color-dark-border: #1e293b;
+
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Poppins", sans-serif;
+}
+
+/* ==========================
+   Base Styles
+========================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-700 antialiased;
+  font-family: var(--font-sans);
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-300;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*::selection {
+  @apply bg-indigo-500 text-white;
+}
+
+a {
+  @apply no-underline transition-colors duration-300;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+img {
+  @apply block max-w-full;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ==========================
+   Headings
+========================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  @apply font-bold text-slate-900;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  @apply text-white;
+}
+
+/* ==========================
+   Scrollbar
+========================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-indigo-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-indigo-600;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-slate-900;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-indigo-400;
+}
+
+/* ==========================
+   Utility Classes
+========================== */
+
+.glass {
+  @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl;
+}
+
+.dark .glass {
+  @apply bg-slate-900/60 border-slate-700/50;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent;
+}
+
+.section {
+  @apply py-24;
+}
+
+.container-custom {
+  @apply mx-auto max-w-7xl px-6 lg:px-8;
+}
