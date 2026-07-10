@@ -7,7 +7,7 @@ import {
   Home,
 } from "lucide-react";
 
-import useQuizContext from "../context/useQuizContext";
+import { useQuizContext } from "../context/useQuizContext";
 
 import Button from "../components/common/Button";
 import Card from "../components/common/Card";

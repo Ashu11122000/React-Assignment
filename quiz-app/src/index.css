@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import "tailwindcss";
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+/* ==========================================================
+   CSS Variables
+========================================================== */
 
 :root {
   font-family: "Inter", sans-serif;
@@ -18,6 +21,7 @@
   --surface-light: #1e293b;
 
   --border: #334155;
+
   --text: #f8fafc;
   --text-muted: #94a3b8;
 
@@ -25,6 +29,10 @@
 
   --transition: all 0.3s ease;
 }
+
+/* ==========================================================
+   Reset
+========================================================== */
 
 *,
 *::before,
@@ -41,8 +49,8 @@
 html,
 body,
 #root {
-  width: 100%;
   min-height: 100%;
+  width: 100%;
 }
 
 body {
@@ -51,12 +59,18 @@ body {
 
   font-family: "Inter", sans-serif;
 
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   overflow-x: hidden;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* ==========================================================
+   Typography
+========================================================== */
 
 h1,
 h2,
@@ -75,27 +89,30 @@ p {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
+
+/* ==========================================================
+   Forms
+========================================================== */
 
 button,
 input,
-select,
-textarea {
+textarea,
+select {
   font: inherit;
 }
 
 button {
   cursor: pointer;
   border: none;
-  outline: none;
-  transition: var(--transition);
+  background: transparent;
 }
 
 button:disabled {
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: .6;
 }
 
 input,
@@ -104,27 +121,36 @@ select {
   outline: none;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-}
+/* ==========================================================
+   Images
+========================================================== */
 
 img {
   display: block;
   max-width: 100%;
-  user-select: none;
 }
+
+/* ==========================================================
+   Lists
+========================================================== */
 
 ul,
 ol {
   list-style: none;
 }
 
+/* ==========================================================
+   Selection
+========================================================== */
+
 ::selection {
   background: #2563eb;
   color: white;
 }
+
+/* ==========================================================
+   Scrollbar
+========================================================== */
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -136,70 +162,32 @@ ol {
 
 ::-webkit-scrollbar-thumb {
   background: #334155;
-  border-radius: 999px;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
 
-/* Firefox */
-
 * {
   scrollbar-width: thin;
   scrollbar-color: #475569 #0f172a;
 }
 
-.glass {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(148, 163, 184, 0.15);
-}
-
-.card-shadow {
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
-.gradient-text {
-  background: linear-gradient(
-    90deg,
-    #38bdf8,
-    #6366f1,
-    #a855f7
-  );
-
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-bg {
-  background: linear-gradient(
-    135deg,
-    #2563eb,
-    #6366f1
-  );
-}
-
-.section-padding {
-  @apply px-6 py-10 md:px-10 lg:px-16;
-}
-
-.container-width {
-  @apply mx-auto max-w-7xl;
-}
+/* ==========================================================
+   Animations
+========================================================== */
 
 .fade-in {
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn .5s ease;
 }
 
 .scale-in {
-  animation: scaleIn 0.35s ease;
+  animation: scaleIn .35s ease;
 }
 
 .slide-up {
-  animation: slideUp 0.5s ease;
+  animation: slideUp .5s ease;
 }
 
 @keyframes fadeIn {
@@ -236,26 +224,11 @@ ol {
   }
 }
 
+/* ==========================================================
+   Focus
+========================================================== */
+
 :focus-visible {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
-}
-
-.app-bg {
-  min-height: 100vh;
-
-  background:
-    radial-gradient(circle at top left,
-      rgba(37, 99, 235, 0.18),
-      transparent 35%),
-
-    radial-gradient(circle at top right,
-      rgba(99, 102, 241, 0.18),
-      transparent 30%),
-
-    radial-gradient(circle at bottom,
-      rgba(168, 85, 247, 0.12),
-      transparent 35%),
-
-    var(--background);
 }

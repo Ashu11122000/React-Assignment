@@ -86,7 +86,7 @@ const useQuiz = () => {
       setError(null);
 
       try {
-        const questions = quizService.generateQuiz({
+        const { questions } = quizService.createQuiz({
           category,
           difficulty,
           numberOfQuestions,
@@ -429,10 +429,7 @@ const useQuiz = () => {
     (selectedAnswer) => {
       if (!currentQuestion) return;
 
-      const isCorrect = quizService.validateAnswer(
-        currentQuestion,
-        selectedAnswer,
-      );
+      const isCorrect = currentQuestion.correctAnswer === selectedAnswer;
 
       setQuiz((previousQuiz) => {
         const updatedQuiz = {
@@ -481,7 +478,7 @@ const useQuiz = () => {
     (selectedAnswer) => {
       if (!currentQuestion) return false;
 
-      return quizService.validateAnswer(currentQuestion, selectedAnswer);
+      return currentQuestion.correctAnswer === selectedAnswer;
     },
     [currentQuestion],
   );
@@ -644,7 +641,10 @@ const useQuiz = () => {
         0,
       ),
 
-      percentage: quizService.calculatePercentage(score.score, quiz.questions),
+      percentage: quizService.calculatePercentage(
+        score.score,
+        quiz.questions.reduce((total, question) => total + question.points, 0),
+      ),
     };
   }, [quiz, answeredQuestions, score.score]);
   /**
@@ -654,14 +654,13 @@ const useQuiz = () => {
    */
 
   const resultSummary = useMemo(() => {
-    return quizService.generateResultSummary({
-      quiz,
-
-      statistics,
-
-      score: score.score,
-    });
-  }, [quiz, statistics, score.score]);
+    return {
+      ...statistics,
+      completedAt: quiz.completedAt,
+      category: quiz.category,
+      difficulty: quiz.difficulty,
+    };
+  }, [statistics, quiz]);
 
   /**
    * ==========================================================
@@ -669,15 +668,16 @@ const useQuiz = () => {
    * ==========================================================
    */
 
-  const achievements = useMemo(() => {
-    return quizService.calculateAchievements({
-      quiz,
+const achievements = useMemo(() => {
+  if (!quiz.questions.length) {
+    return [];
+  }
 
-      statistics,
-
-      score: score.score,
-    });
-  }, [quiz, statistics, score.score]);
+  return quizService.detectAchievements({
+    questions: quiz.questions,
+    totalTimeSpent: timer.elapsedTime,
+  });
+}, [quiz.questions, timer.elapsedTime]);
 
   /**
    * ==========================================================

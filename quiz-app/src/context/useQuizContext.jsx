@@ -1,33 +1,7 @@
 import { useContext } from "react";
-
 import QuizContext from "./QuizContext";
 
-/**
- * ==========================================================
- * useQuizContext
- * ==========================================================
- *
- * Custom hook for consuming QuizContext.
- *
- * Usage:
- *
- * const {
- *   quiz,
- *   currentQuestion,
- *   loading,
- *   progress,
- *   timer,
- *   score,
- *   nextQuestion,
- *   previousQuestion,
- *   answerQuestion,
- *   finishQuiz,
- * } = useQuizContext();
- *
- * ==========================================================
- */
-
-const useQuizContext = () => {
+export const useQuizContext = () => {
   const context = useContext(QuizContext);
 
   if (context === null) {
@@ -38,5 +12,3 @@ const useQuizContext = () => {
 
   return context;
 };
-
-export default useQuizContext;

@@ -31,8 +31,8 @@ import reactQuestions from "../data/quizData/react";
 import tailwindQuestions from "../data/quizData/tailwind";
 import gitQuestions from "../data/quizData/git";
 import nodeQuestions from "../data/quizData/node";
-import nextjsQuestions from "../data/quizData/nextjs";
-import nestjsQuestions from "../data/quizData/nestjs";
+import nextjsQuestions from "../data/quizData/next";
+import nestjsQuestions from "../data/quizData/nest";
 import typescriptQuestions from "../data/quizData/typescript";
 import zodQuestions from "../data/quizData/zod";
 
@@ -531,30 +531,23 @@ const skipQuestion = (state) => {
    Completion
 ========================================================== */
 
-const answeredQuestionCount = (
-  questions
-) =>
+const answeredQuestionCount = (questions = []) =>
   questions.filter(
     (question) => question.isAnswered
   ).length;
-
-const skippedQuestionCount = (
-  questions
-) =>
+  
+const skippedQuestionCount = (questions = []) =>
   questions.filter(
     (question) => question.skipped
   ).length;
 
-const correctQuestionCount = (
-  questions
-) =>
+
+const correctQuestionCount = (questions = []) =>
   questions.filter(
     (question) => question.isCorrect
   ).length;
 
-const wrongQuestionCount = (
-  questions
-) =>
+const wrongQuestionCount = (questions = []) =>
   questions.filter(
     (question) =>
       question.isAnswered &&
@@ -1119,6 +1112,46 @@ const updateStatistics = (
   };
 };
 
+/**
+ * ==========================================================
+ * Generate Result Summary
+ * ==========================================================
+ */
+
+const generateResultSummary = ({
+  score = 0,
+  totalQuestions = 0,
+  correctAnswers = 0,
+  wrongAnswers = 0,
+  skippedQuestions = 0,
+  percentage = 0,
+  accuracy = 0,
+  xp = 0,
+  grade = "F",
+  elapsedTime = 0,
+} = {}) => {
+  return {
+    score,
+    totalQuestions,
+
+    correctAnswers,
+    wrongAnswers,
+    skippedQuestions,
+
+    percentage,
+    accuracy,
+
+    xp,
+    grade,
+
+    elapsedTime,
+
+    passed: percentage >= 60,
+
+    completedAt: new Date().toISOString(),
+  };
+};
+
 /* ==========================================================
    Achievements
 ========================================================== */
@@ -1164,6 +1197,18 @@ const detectAchievements = (
   return achievements;
 };
 
+/**
+ * ==========================================================
+ * Calculate Achievements
+ * ==========================================================
+ * Alias for compatibility with useQuiz.js
+ * ==========================================================
+ */
+
+const calculateAchievements = (state) => {
+  return detectAchievements(state);
+};
+
 /* ==========================================================
    Result Formatter
 ========================================================== */
@@ -1191,7 +1236,9 @@ const formatResult = (state) => ({
 ========================================================== */
 
 const quizService = {
-  /* ---------- Foundation ---------- */
+  /* ==========================================================
+     Foundation
+  ========================================================== */
 
   getCategories,
   getCategoryNames,
@@ -1219,15 +1266,21 @@ const quizService = {
 
   ...quizHelpers,
 
-  /* ---------- Answer Engine ---------- */
+  /* ==========================================================
+     Answer Engine
+  ========================================================== */
 
   ...answerEngine,
 
-  /* ---------- Review ---------- */
+  /* ==========================================================
+     Review
+  ========================================================== */
 
   generateReview,
 
-  /* ---------- Analytics ---------- */
+  /* ==========================================================
+     Analytics
+  ========================================================== */
 
   categoryAnalytics,
 
@@ -1235,21 +1288,40 @@ const quizService = {
 
   generatePerformanceSummary,
 
-  /* ---------- Leaderboard ---------- */
+  calculateAnalytics,
+
+  /* ==========================================================
+     Result
+  ========================================================== */
+
+  generateResultSummary,
+
+  finalizeQuiz,
+
+  /* ==========================================================
+     Leaderboard
+  ========================================================== */
 
   createLeaderboardEntry,
 
   sortLeaderboard,
 
-  /* ---------- Statistics ---------- */
+  /* ==========================================================
+     Statistics
+  ========================================================== */
 
   updateStatistics,
 
-  /* ---------- Achievements ---------- */
+  /* ==========================================================
+     Achievements
+  ========================================================== */
 
   detectAchievements,
+  calculateAchievements,
 
-  /* ---------- Formatter ---------- */
+  /* ==========================================================
+     Formatter
+  ========================================================== */
 
   formatResult,
 };

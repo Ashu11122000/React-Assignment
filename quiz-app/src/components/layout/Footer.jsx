@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  Github,
   Heart,
   Code2,
 } from "lucide-react";
@@ -9,12 +8,14 @@ import {
  * ==========================================================
  * Footer Component
  * ==========================================================
+ *
  * Features
  * - Responsive
  * - Dynamic Year
- * - Navigation Links
+ * - Quick Navigation
  * - Tech Stack
- * - GitHub Link
+ * - Version Information
+ *
  * ==========================================================
  */
 
@@ -38,27 +39,27 @@ const quickLinks = [
 export default function Footer() {
   return (
     <footer className="border-t border-slate-800 bg-slate-950">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-8 lg:flex-row lg:items-center lg:justify-between">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-8 lg:flex-row lg:items-start lg:justify-between">
         {/* ================= Brand ================= */}
 
-        <div>
+        <div className="max-w-md">
           <h2 className="text-xl font-bold text-white">
             Quiz App
           </h2>
 
-          <p className="mt-2 max-w-md text-sm text-slate-400">
-            A modern quiz application built with
-            React, JavaScript, Tailwind CSS and
-            Vite. Practice interview questions,
-            improve your knowledge and track your
-            progress.
+          <p className="mt-3 text-sm leading-6 text-slate-400">
+            A production-ready interview preparation platform
+            built with React, JavaScript, Tailwind CSS and Vite.
+            Practice technical questions, track your progress,
+            improve your knowledge, and prepare for real-world
+            interviews.
           </p>
         </div>
 
         {/* ================= Quick Links ================= */}
 
         <div>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-300">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-300">
             Quick Links
           </h3>
 
@@ -67,7 +68,7 @@ export default function Footer() {
               <li key={link.path}>
                 <Link
                   to={link.path}
-                  className="text-sm text-slate-400 transition-colors hover:text-blue-400"
+                  className="text-sm text-slate-400 transition-colors duration-200 hover:text-blue-400"
                 >
                   {link.label}
                 </Link>
@@ -79,16 +80,20 @@ export default function Footer() {
         {/* ================= Tech Stack ================= */}
 
         <div>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-300">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-300">
             Built With
           </h3>
 
-          <div className="space-y-2 text-sm text-slate-400">
+          <div className="space-y-3 text-sm text-slate-400">
             <div className="flex items-center gap-2">
-              <Code2 size={16} />
+              <Code2
+                size={16}
+                className="text-blue-400"
+              />
+
               <span>
-                React • JavaScript • Tailwind CSS
-                • Vite
+                React • JavaScript • Tailwind CSS •
+                Vite
               </span>
             </div>
 
@@ -96,10 +101,11 @@ export default function Footer() {
               <Heart
                 size={16}
                 className="text-red-500"
+                fill="currentColor"
               />
 
               <span>
-                Built for learning & interview
+                Built for learning and interview
                 preparation
               </span>
             </div>
@@ -110,24 +116,20 @@ export default function Footer() {
       {/* ================= Bottom Bar ================= */}
 
       <div className="border-t border-slate-800">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-4 text-sm text-slate-500 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-4 text-sm text-slate-500 md:flex-row">
           <p>
             © {currentYear} Quiz App. All rights
             reserved.
           </p>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4">
             <span>Version 1.0.0</span>
 
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-white"
-              aria-label="GitHub Repository"
-            >
-              <Github size={20} />
-            </a>
+            <span className="hidden text-slate-700 md:block">
+              |
+            </span>
+
+            <span>Made with React & Tailwind CSS</span>
           </div>
         </div>
       </div>
