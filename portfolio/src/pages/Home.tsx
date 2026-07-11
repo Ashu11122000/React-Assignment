@@ -1,4 +1,5 @@
 import Hero from "../components/hero/Hero";
+import FeaturedCertifications from "../components/certifications/FeaturedCertifications";
 
 /**
  * ==========================================================
@@ -15,9 +16,9 @@ import Hero from "../components/hero/Hero";
  * Sections
  * --------
  * ✓ Hero
- * ✓ Services Preview
+ * ✓ Services Preview (Coming Soon)
  * ✓ Certifications Preview
- * ✓ Resume Preview
+ * ✓ Resume Preview (Coming Soon)
  *
  * Dedicated Pages
  * ---------------
@@ -34,24 +35,29 @@ import Hero from "../components/hero/Hero";
 function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <Hero />
       {/* ======================================================
-          Services Preview
-          (Coming in next phase)
-      ======================================================= */}
+                Hero Section
+            ======================================================= */}
+
+      <Hero />
+
+      {/* ======================================================
+                Services Preview
+                (Coming in next phase)
+            ======================================================= */}
 
       {/* <ServicesPreview /> */}
 
       {/* ======================================================
-          Certifications Preview
-      ======================================================= */}
+                Certifications Preview
+            ======================================================= */}
 
-      {/* <CertificationsPreview /> */}
+      <FeaturedCertifications />
 
       {/* ======================================================
-          Resume Preview
-      ======================================================= */}
+                Resume Preview
+                (Coming later)
+            ======================================================= */}
 
       {/* <ResumePreview /> */}
     </>

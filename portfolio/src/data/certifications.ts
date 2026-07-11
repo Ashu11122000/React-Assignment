@@ -66,7 +66,7 @@ export const certifications: Certification[] = [
       { id: "performance", name: "Performance Optimization" },
     ],
 
-    credentialUrl: "",
+    credentialUrl: "https://drive.google.com/file/d/1jrkWFxCyom6coNNg_oHcb_E0baFTDDYx/view?usp=drive_link",
 
     order: 1,
   },
