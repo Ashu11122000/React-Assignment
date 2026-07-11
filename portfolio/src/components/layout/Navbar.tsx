@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import { Download, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import Container from "../common/Container";
-import Button from "../common/Button";
 import ThemeToggle from "../common/ThemeToggle";
 
 import { cn } from "../../utils/cn";
@@ -144,22 +143,7 @@ function Navbar() {
               </ul>
             </nav>
 
-            {/* ==========================
-                Desktop Actions
-            =========================== */}
-
-            <div className="hidden items-center gap-3 lg:flex">
-              <ThemeToggle />
-
-              <Button
-                size="md"
-                rightIcon={<Download size={18} />}
-                onClick={() => window.open(SITE_CONFIG.resume, "_blank")}
-              >
-                Resume
-              </Button>
-            </div>
-
+            
             {/* ==========================
                 Mobile Actions
             =========================== */}
@@ -284,20 +268,6 @@ function Navbar() {
           {/* ==========================
               Drawer Footer
           =========================== */}
-
-          <div className="border-t border-slate-200 p-6 dark:border-slate-800">
-            <Button
-              fullWidth
-              rightIcon={<Download size={18} />}
-              onClick={() => {
-                window.open(SITE_CONFIG.resume, "_blank");
-
-                setIsMobileOpen(false);
-              }}
-            >
-              Download Resume
-            </Button>
-          </div>
         </div>
       </aside>
     </>
