@@ -36,7 +36,6 @@ function Home() {
     <>
       {/* Hero Section */}
       <Hero />
-
       {/* ======================================================
           Services Preview
           (Coming in next phase)
