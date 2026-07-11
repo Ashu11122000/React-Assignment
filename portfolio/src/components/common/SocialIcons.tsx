@@ -1,5 +1,4 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-
 import { MdEmail } from "react-icons/md";
 
 import { cn } from "../../utils/cn";
@@ -18,7 +17,7 @@ interface SocialIconsProps {
 const socialLinks: SocialLink[] = [
   {
     name: "GitHub",
-    href: "https://github.com/Ashish11122000",
+    href: "https://github.com/Ashu11122000",
     icon: FaGithub,
   },
   {
@@ -28,25 +27,30 @@ const socialLinks: SocialLink[] = [
   },
   {
     name: "Email",
-    href: "ashu11vats@gmail.com",
-    icon: MdEmail,
-  },
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=ashu11vats@gmail.com",
+    icon: MdEmail, 
+  }
 ];
 
-function SocialIcons({ className, iconSize = 18 }: SocialIconsProps) {
+function SocialIcons({
+  className,
+  iconSize = 18,
+}: SocialIconsProps) {
   return (
     <div className={cn("flex items-center gap-3", className)}>
       {socialLinks.map((social) => {
         const Icon = social.icon;
 
+        const isExternal =
+          social.href.startsWith("http") ||
+          social.href.startsWith("mailto:");
+
         return (
           <a
             key={social.name}
             href={social.href}
-            target={social.href.startsWith("http") ? "_blank" : undefined}
-            rel={
-              social.href.startsWith("http") ? "noopener noreferrer" : undefined
-            }
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
             aria-label={social.name}
             title={social.name}
             className={cn(
@@ -60,9 +64,14 @@ function SocialIcons({ className, iconSize = 18 }: SocialIconsProps) {
               "hover:bg-indigo-600",
               "hover:text-white",
               "hover:shadow-lg",
+              "focus:outline-none",
+              "focus:ring-2",
+              "focus:ring-indigo-500",
+              "focus:ring-offset-2",
               "dark:border-slate-700",
               "dark:bg-slate-900/80",
               "dark:hover:bg-indigo-600",
+              "dark:focus:ring-offset-slate-950",
             )}
           >
             <Icon size={iconSize} />
