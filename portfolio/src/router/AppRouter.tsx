@@ -7,7 +7,7 @@ import About from "../pages/About";
 import Skills from "../pages/Skills";
 import Experience from "../pages/Experience";
 import Projects from "../pages/Projects";
-import Contact from "../pages/Contact";
+// import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 
 /**
@@ -44,7 +44,7 @@ function AppRouter() {
 
                     <Route path="/projects" element={<Projects />} />
 
-                    <Route path="/contact" element={<Contact />} />
+                    { /*<Route path="/contact" element={<Contact />} />*/ }
 
                     {/* Redirect Example */}
                     <Route path="/home" element={<Navigate to="/" replace />} />
